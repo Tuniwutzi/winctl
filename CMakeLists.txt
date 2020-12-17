@@ -1,4 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.15.0)
+add_compile_options("/std:c++latest")
 
 project(winctl)
 
@@ -20,8 +21,16 @@ SET_TARGET_PROPERTIES(${target} PROPERTIES PUBLIC_HEADER "${headers}")
 
 TARGET_INCLUDE_DIRECTORIES(${target} PUBLIC ${src})
 
+#[[
+SET_TARGET_PROPERTIES(${target}
+    PROPERTIES
+        CXX_STANDARD 17
+        CXX_STANDARD_REQUIRED YES
+)
 TARGET_COMPILE_FEATURES(
     ${target}
-    INTERFACE
+    PUBLIC
         cxx_std_17
 )
+]]
+
